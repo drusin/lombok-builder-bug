@@ -4,8 +4,15 @@ When using `jax-rs`, `jackson` and `@JsonView`, this Dto
 
 ```java
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Dto {
-	@JsonView(DefaultView.class)
+	public static class View {
+		public static class DefaultView { /* */ }
+	}
+	
+	@JsonView(Dto.View.DefaultView.class)
 	private boolean isDefault;
 }
 ```
